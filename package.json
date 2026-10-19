@@ -15,5 +15,9 @@
   },
   "devDependencies": {
     "typescript": "^5.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/file-projection-kernel-service.git"
   }
 }
