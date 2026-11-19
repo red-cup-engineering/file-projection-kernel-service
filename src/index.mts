@@ -185,7 +185,7 @@ export function readIsDecidable<T>(projector: Projector<T>): boolean {
  *  enriching upward (may require outside information) or settling downward (always
  *  sound, lossy). The incomparable middles `data`↔`prose` are the feature-swap
  *  diagonal, which has no lossless transcoding. */
-export function admitsTranscode(from: Corner, to: Corner): boolean {
+export function validatesTranscode(from: Corner, to: Corner): boolean {
   return leqK(from, to) || leqK(to, from);
 }
 
@@ -196,7 +196,7 @@ export function admitsTranscode(from: Corner, to: Corner): boolean {
  *  the `data`↔`prose` feature-swap diagonal throws, because it has no lossless
  *  form. Both projectors must carry the same item type `T`. */
 export function transcode<T>(from: Projector<T>, to: Projector<T>, resource: Resource): string {
-  if (!admitsTranscode(cornerOf(from), cornerOf(to))) {
+  if (!validatesTranscode(cornerOf(from), cornerOf(to))) {
     throw new TypeError(
       `inadmissible transcode ${from.type}(${cornerOf(from)}) → ${to.type}(${cornerOf(to)}): ` +
         `corners are not ≤_k-comparable (the feature-swap diagonal has no lossless form)`,
